@@ -32,7 +32,12 @@ function _xpath {
         result=`xpath -e "$XPATH" $MAVENMETAFILE 2>/dev/null`
     elif is_fedora; then
         yum_install perl-XML-XPath >/dev/null
-        result=`xpath -e "$XPATH" $MAVENMETAFILE 2>/dev/null`
+        if [ "$os_VENDOR" = "Fedora" ]; then
+            result=`xpath -e "$XPATH" $MAVENMETAFILE 2>/dev/null`
+        else
+            # RHEL and CentOS
+            result=`xpath $MAVENMETAFILE "$XPATH" 2>/dev/null`
+        fi
     else
         yum_install perl-XML-XPath >/dev/null
         result=`xpath $MAVENMETAFILE "$XPATH" 2>/dev/null`
