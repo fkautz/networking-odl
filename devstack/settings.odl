@@ -26,6 +26,11 @@
 ODL_RELEASE=${ODL_RELEASE:-latest-snapshot}
 
 # The IP address of ODL. Set this in local.conf.
+
+#Set ODL_MGR_HOST to ODL_MGR_IP if ODL_MGR_HOST is not set
+ODL_MGR_HOST=${ODL_MGR_HOST:-$ODL_MGR_IP}
+
+# Set ODL_MGR_HOST to SERVICE_HOST if neither ODL_MGR_HOST nor ODL_MGR_IP is set
 ODL_MGR_HOST=${ODL_MGR_HOST:-$SERVICE_HOST}
 
 # The list of IP addresses used as OVS manager, separated by a comma.
